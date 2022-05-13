@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 import '../../core.dart';
-import '../../models.dart';
 
 class HotelHeader extends StatelessWidget {
   const HotelHeader({
