@@ -24,7 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   curved_navigation_bar: ^1.0.1
   favorites_advanced_base:
-  flow_builder: ^0.0.6
+  flow_builder: ^0.0.8
   flutter:
     sdk: flutter
   flutter_rx_bloc:

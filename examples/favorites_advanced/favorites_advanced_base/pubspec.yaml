@@ -6,13 +6,13 @@ homepage:
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.17.0 <2.0.0"
+  flutter: ">=1.17.0 <=3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   skeleton_text:
-  visibility_detector: ^0.2.0-nullsafety.1
+  visibility_detector: ^0.3.3
   connectivity: ^3.0.2
   image_picker: ^0.7.0
   collection: ^1.15.0-nullsafety.4

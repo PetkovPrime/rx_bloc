@@ -72,6 +72,7 @@ class GithubRepoListPage extends StatelessWidget implements AutoRouteWrapper {
           ],
           body: RxPaginatedBuilder<GithubRepoListBlocType,
               GithubRepo>.withRefreshIndicator(
+            bloc: RxBlocProvider.of<GithubRepoListBlocType>(context),
             state: (bloc) => bloc.states.paginatedList,
             onBottomScrolled: (bloc) => bloc.events.loadPage(),
             onRefresh: (bloc) async {
