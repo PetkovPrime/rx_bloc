@@ -1,5 +1,4 @@
 import 'package:badges/badges.dart';
-import 'package:booking_app/base/ui_components/favorite_message_listener.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:favorites_advanced_base/core.dart';
 import 'package:favorites_advanced_base/extensions.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../base/extensions/async_snapshot.dart';
+import '../../base/ui_components/favorite_message_listener.dart';
 import '../../base/ui_components/hotels_app_bar.dart';
 import '../../feature_hotel/blocs/hotel_manage_bloc.dart';
 import '../../feature_hotel/blocs/hotels_extra_details_bloc.dart';
@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: HotelsAppBar(),
+        appBar: const HotelsAppBar(),
         body: Column(
           children: [
             const FavoriteMessageListener(overrideMargins: true),
@@ -91,9 +91,9 @@ class HomePage extends StatelessWidget {
 
     switch (type.data!.type) {
       case NavigationItemType.search:
-        return SearchPage();
+        return const SearchPage();
       case NavigationItemType.favorites:
-        return FavoritesPage();
+        return const FavoritesPage();
     }
   }
 }
