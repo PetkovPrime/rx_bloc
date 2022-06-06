@@ -20,23 +20,19 @@ dependencies:
   animated_stream_list:
   appbar_textfield: ^1.0.1+1
   badges: ^1.1.4
-  collection: ^1.15.0-nullsafety.4
-  cupertino_icons: ^1.0.0
   curved_navigation_bar: ^0.4.0-nullsafety.0
-  equatable: ^2.0.0
   favorites_advanced_base:
   flutter:
     sdk: flutter
   flutter_rx_bloc:
   image_picker: ^0.7.0
-  intl: ^0.17.0
   provider: ^6.0.0
   rflutter_alert: ^2.0.2
   intl: ^0.17.0
   firebase_core: ^1.2.0
   cloud_firestore: ^2.2.0
   firebase_storage: ^8.1.0
-  cloud_functions: ^1.1.2
+  cloud_functions: ^3.2.16
   rx_bloc_cli: ^0.0.5
 
   # The following adds the Cupertino Icons font to your application.

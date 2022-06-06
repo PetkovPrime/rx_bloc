@@ -36,8 +36,6 @@ class HotelDetailsBloc extends $HotelDetailsBloc {
     required Hotel hotel,
   })  : _hotel = hotel,
         _hotelsRepository = hotelsRepository;
-  })  : _hotel = hotel,
-        _coordinatorBlocType = coordinatorBloc;
 
   final Hotel _hotel;
 
