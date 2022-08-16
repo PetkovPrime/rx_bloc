@@ -8,7 +8,7 @@ const App = () => {
 	return (
 		<AuthProvider>
 			<SnackbarProvider anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}>
-				<BrowserRouter>
+				<BrowserRouter basename={process.env.PUBLIC_URL}>
 					<AppRoutes />
 				</BrowserRouter>
 			</SnackbarProvider>
