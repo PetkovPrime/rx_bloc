@@ -1,29 +1,36 @@
-import { Link, Outlet } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../authentication/hooks/useAuth';
-import { AppBar, IconButton, Toolbar } from '@mui/material';
-import RefreshIcon from '@mui/icons-material/Refresh';
+import { AppBar, IconButton, Tab, Tabs, Toolbar } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
+import DashboardPage from '../pages/dashboard-page/DashboardPage';
+import RemindersListPage from '../pages/reminders-list-page/RemindersListPage';
 
 const RemindersLayout = () => {
 	const auth = useAuth();
+	const { tab } = useParams();
+	const navigate = useNavigate();
 
 	return (
 		<div>
 			<AppBar position="sticky">
 				<Toolbar variant="dense">
-					<IconButton color="inherit">
-						<RefreshIcon />
-					</IconButton>
 					<IconButton sx={{ marginLeft: 'auto' }} color="inherit" onClick={auth.signOut}>
 						<LogoutIcon />
 					</IconButton>
 				</Toolbar>
+				<Tabs
+					value={tab ?? 'dashboard'}
+					onChange={(e, tab) => navigate(`/${tab}`)}
+					textColor="inherit"
+					variant="fullWidth"
+				>
+					<Tab value="dashboard" label="Dashboard" />
+					<Tab value="reminders" label="reminders" />
+				</Tabs>
 			</AppBar>
-			<Link to="/dashboard">Dashboard</Link>
-			<Link to="/reminders">Reminders</Link>
-			<button onClick={auth.signOut}>Logout</button>
 			<div>
-				<Outlet />
+				{(tab === undefined || tab === 'dashboard') && <DashboardPage />}
+				{tab === 'reminders' && <RemindersListPage />}
 			</div>
 		</div>
 	);

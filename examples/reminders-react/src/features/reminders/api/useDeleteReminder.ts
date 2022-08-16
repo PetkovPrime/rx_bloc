@@ -1,9 +1,30 @@
 import useDeleteDocument from '../../../api/useDeleteDocument';
-
-// TODO UPDATE COUNTERS
+import { useCallback, useMemo } from 'react';
+import useReminderCounters from './useReminderCounters';
 
 const useDeleteReminder = () => {
-	return useDeleteDocument('reminders');
+	const { updateCounters } = useReminderCounters();
+	const { mutate, ...other } = useDeleteDocument('reminders');
+
+	const newMutate = useCallback(
+		(id: string, isComplete: boolean) => {
+			updateCounters(() => ({
+				total: -1,
+				complete: isComplete ? -1 : 0,
+				incomplete: isComplete ? 0 : -1
+			}));
+			return mutate(id);
+		},
+		[mutate, updateCounters]
+	);
+
+	return useMemo(
+		() => ({
+			mutate: newMutate,
+			...other
+		}),
+		[newMutate, other]
+	);
 };
 
 export default useDeleteReminder;
