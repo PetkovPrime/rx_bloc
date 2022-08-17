@@ -19,14 +19,14 @@ const DashboardPage = () => {
 				<FullscreenLoader />
 			) : (
 				<Grid container spacing={3}>
-					<Grid item xs={12} md={6}>
+					<Grid item xs={6}>
 						<Typography align="center">Incomplete</Typography>
 						<Box className="counter">
 							<HourglassEmptyIcon />
 							<span>{incomplete}</span>
 						</Box>
 					</Grid>
-					<Grid item xs={12} md={6}>
+					<Grid item xs={6}>
 						<Typography align="center">Complete</Typography>
 						<Box className="counter">
 							<AssignmentTurnedInIcon />
