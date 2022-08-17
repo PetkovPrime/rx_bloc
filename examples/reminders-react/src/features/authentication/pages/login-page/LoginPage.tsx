@@ -1,13 +1,18 @@
 import useAuth from '../../hooks/useAuth';
-import { Navigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 import './loginPage.scss';
 import FullscreenLoader from '../../../../ui-kit/fullscreen-loader/FullscreenLoader';
 import { ButtonBase, CircularProgress, Typography } from '@mui/material';
 
 const LoginPage = () => {
 	const auth = useAuth();
+	const location = useLocation();
 
 	if (auth.state?.isAuthenticated) {
+		if ((location.state as any).from) {
+			return <Navigate to={(location.state as any).from} />;
+		}
+
 		return <Navigate to="/" />;
 	}
 

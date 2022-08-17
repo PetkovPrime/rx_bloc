@@ -21,7 +21,9 @@ const AppRoutes = () => {
 		for (const match of matches) {
 			if (!state.isAuthenticated) {
 				if (match.route.allowOnlyAuthenticated) {
-					return <Navigate to="/login" replace={true} />;
+					return (
+						<Navigate to="/login" replace={true} state={{ from: location.pathname }} />
+					);
 				}
 			}
 		}
