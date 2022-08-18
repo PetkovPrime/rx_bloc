@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../../authentication/hooks/useAuth';
-import { AppBar, IconButton, Tab, Tabs, Toolbar } from '@mui/material';
+import { AppBar, Box, IconButton, Tab, Tabs, Toolbar } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardPage from '../pages/dashboard-page/DashboardPage';
 import RemindersListPage from '../pages/reminders-list-page/RemindersListPage';
@@ -29,8 +29,12 @@ const RemindersLayout = () => {
 				</Tabs>
 			</AppBar>
 			<div>
-				{(tab === undefined || tab === 'dashboard') && <DashboardPage />}
-				{tab === 'reminders' && <RemindersListPage />}
+				<Box display={tab === undefined || tab === 'dashboard' ? 'block' : 'none'}>
+					<DashboardPage />
+				</Box>
+				<Box display={tab === 'reminders' ? 'block' : 'none'}>
+					<RemindersListPage />
+				</Box>
 			</div>
 		</div>
 	);
