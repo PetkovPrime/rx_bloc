@@ -29,14 +29,12 @@ const RemindersLayout = () => {
 					<Tab value="reminders" label="reminders" />
 				</Tabs>
 			</AppBar>
-			<div>
-				<Box display={tab === undefined || tab === 'dashboard' ? 'block' : 'none'}>
-					<DashboardPage />
-				</Box>
-				<Box display={tab === 'reminders' ? 'block' : 'none'}>
-					<RemindersListPage />
-				</Box>
-			</div>
+			<Box display={tab === undefined || tab === 'dashboard' ? 'block' : 'none'}>
+				<DashboardPage />
+			</Box>
+			<Box display={tab === 'reminders' ? 'block' : 'none'}>
+				<RemindersListPage />
+			</Box>
 		</div>
 	);
 };

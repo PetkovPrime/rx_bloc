@@ -1,7 +1,7 @@
 import useGetMyReminders from '../../api/useGetMyReminders';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reminder from '../../components/reminder/Reminder';
-import './reminderList.scss';
+import './reminder-list.scss';
 import CreateReminderModal from '../../components/create-reminder-modal/CreateReminderModal';
 import useAddReminder from '../../api/useAddReminder';
 import { CircularProgress, Fab, List, ListSubheader, Typography } from '@mui/material';
@@ -74,7 +74,7 @@ const RemindersListPage = () => {
 			addReminder
 				.mutate({ title: data.title, dueDate: data.date, complete: false })
 				.then((ref) => {
-					enqueueSnackbar(`Snackbar with title "${data.title}" was created.`);
+					enqueueSnackbar(`Reminder with title "${data.title}" was created.`);
 					refs.current[ref.id]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 				});
 			setIsCreateOpen(false);

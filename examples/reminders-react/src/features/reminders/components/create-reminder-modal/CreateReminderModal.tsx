@@ -11,6 +11,7 @@ import {
 	Grid,
 	TextField
 } from '@mui/material';
+import { MobileDatePicker } from '@mui/x-date-pickers';
 
 interface CreateReminderModalProps {
 	isOpen: boolean;
@@ -28,8 +29,8 @@ const CreateReminderModal = ({ isOpen, onClose, onCreate }: CreateReminderModalP
 	}, [isOpen]);
 
 	const handleClickCreate = useCallback(() => {
-		if (title.length == 0 || date.length == 0) {
-			setError('A title and date must be specified.');
+		if (title.trim().length == 0) {
+			setError('A title must be specified.');
 			return;
 		}
 		onCreate({ title, date });
@@ -51,12 +52,13 @@ const CreateReminderModal = ({ isOpen, onClose, onCreate }: CreateReminderModalP
 						/>
 					</Grid>
 					<Grid item>
-						<TextField
+						<MobileDatePicker
+							onChange={(date) => setDate(date ?? getDateForInput(new Date()))}
 							value={date}
-							onChange={(e) => setDate(e.target.value)}
-							variant="standard"
-							label="Date"
-							type="date"
+							disableMaskedInput
+							renderInput={(params) => (
+								<TextField {...params} variant="standard" label="Date" />
+							)}
 						/>
 					</Grid>
 				</Grid>

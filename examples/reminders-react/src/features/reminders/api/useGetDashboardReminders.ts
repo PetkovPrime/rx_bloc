@@ -14,7 +14,7 @@ const useGetDashboardReminders = () => {
 		where('dueDate', '<=', new Date()),
 		where('dueDate', '>=', new Date(Date.now() - days10)),
 		orderBy('dueDate'),
-		limit(10)
+		limit(5)
 	]);
 };
 
