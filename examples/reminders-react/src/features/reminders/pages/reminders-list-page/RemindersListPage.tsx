@@ -1,5 +1,5 @@
 import useGetMyReminders from '../../api/useGetMyReminders';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reminder from '../../components/reminder/Reminder';
 import './reminderList.scss';
 import CreateReminderModal from '../../components/create-reminder-modal/CreateReminderModal';
@@ -14,6 +14,8 @@ const RemindersListPage = () => {
 	const { enqueueSnackbar } = useSnackbar();
 
 	const [isCreateOpen, setIsCreateOpen] = useState(false);
+
+	const refs = useRef<{ [key: string]: HTMLLIElement }>({});
 
 	const reminders = useMemo(() => {
 		const startToday = new Date();
@@ -71,8 +73,9 @@ const RemindersListPage = () => {
 		(data: { date: string; title: string }) => {
 			addReminder
 				.mutate({ title: data.title, dueDate: data.date, complete: false })
-				.then(() => {
+				.then((ref) => {
 					enqueueSnackbar(`Snackbar with title "${data.title}" was created.`);
+					refs.current[ref.id]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 				});
 			setIsCreateOpen(false);
 		},
@@ -101,7 +104,11 @@ const RemindersListPage = () => {
 					<>
 						<ListSubheader>Overdue</ListSubheader>
 						{reminders.overdue.map((reminder) => (
-							<Reminder key={reminder.id} reminder={reminder} />
+							<Reminder
+								key={reminder.id}
+								reminder={reminder}
+								innerRef={(el) => (refs.current[reminder.id] = el)}
+							/>
 						))}
 					</>
 				)}
@@ -110,7 +117,11 @@ const RemindersListPage = () => {
 					<>
 						<ListSubheader>Today</ListSubheader>
 						{reminders.today.map((reminder) => (
-							<Reminder key={reminder.id} reminder={reminder} />
+							<Reminder
+								key={reminder.id}
+								reminder={reminder}
+								innerRef={(el) => (refs.current[reminder.id] = el)}
+							/>
 						))}
 					</>
 				)}
@@ -119,7 +130,11 @@ const RemindersListPage = () => {
 					<>
 						<ListSubheader>This month</ListSubheader>
 						{reminders.thisMonth.map((reminder) => (
-							<Reminder key={reminder.id} reminder={reminder} />
+							<Reminder
+								key={reminder.id}
+								reminder={reminder}
+								innerRef={(el) => (refs.current[reminder.id] = el)}
+							/>
 						))}
 					</>
 				)}
@@ -128,7 +143,11 @@ const RemindersListPage = () => {
 					<>
 						<ListSubheader>Future</ListSubheader>
 						{reminders.future.map((reminder) => (
-							<Reminder key={reminder.id} reminder={reminder} />
+							<Reminder
+								key={reminder.id}
+								reminder={reminder}
+								innerRef={(el) => (refs.current[reminder.id] = el)}
+							/>
 						))}
 					</>
 				)}

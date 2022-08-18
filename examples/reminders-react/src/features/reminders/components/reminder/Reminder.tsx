@@ -21,9 +21,10 @@ import { useSnackbar } from 'notistack';
 
 interface ReminderProps {
 	reminder: ReminderType;
+	innerRef?: (instance: HTMLLIElement) => void;
 }
 
-const Reminder = ({ reminder }: ReminderProps) => {
+const Reminder = ({ reminder, innerRef }: ReminderProps) => {
 	const editReminder = useEditReminder();
 	const deleteReminder = useDeleteReminder();
 	const { enqueueSnackbar } = useSnackbar();
@@ -61,7 +62,10 @@ const Reminder = ({ reminder }: ReminderProps) => {
 	};
 
 	return (
-		<ListItem className={`reminder ${reminder.complete ? 'complete' : ''}`}>
+		<ListItem
+			ref={innerRef}
+			className={`reminder ${reminder.complete ? 'complete' : ''}`}
+		>
 			<EditableText
 				value={reminder.title}
 				onChange={handleTitleChange}

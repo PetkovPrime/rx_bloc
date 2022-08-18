@@ -25,12 +25,13 @@ const useAddReminder = () => {
 					complete: data.complete,
 					authorId: state.user.id
 				})
-				.then(() => {
+				.then((ref) => {
 					updateCounters(() => ({
 						total: +1,
 						complete: data.complete ? +1 : 0,
 						incomplete: data.complete ? 0 : +1
 					}));
+					return ref;
 				});
 		},
 		[addDocument, updateCounters, state.user.id]

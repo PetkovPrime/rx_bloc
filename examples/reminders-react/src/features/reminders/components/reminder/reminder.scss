@@ -9,6 +9,10 @@
     background-color: var(--reminder-complete);
   }
 
+  .title {
+    min-width: 2rem;
+  }
+
   .date {
     margin-left: auto;
   }
