@@ -4,9 +4,10 @@
   gap: 1rem;
   border-bottom: 1px solid rgba(0,0,0,0.25);
   min-height: 2rem;
+  background-color: var(--reminder-bg);
 
   &.complete {
-    background-color: var(--reminder-complete);
+    background-color: var(--reminder-bg-complete);
   }
 
   .title {
@@ -15,6 +16,14 @@
 
   .date {
     margin-left: auto;
+    min-width: 5rem;
+    justify-content: center;
+    background-color: var(--light);
+    padding: 4px;
+    border-radius: 4px;
+    &.editing {
+      padding: 2px;
+    }
   }
 
 }

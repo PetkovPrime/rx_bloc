@@ -4,6 +4,7 @@ import { AppBar, Box, IconButton, Tab, Tabs, Toolbar } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardPage from '../pages/dashboard-page/DashboardPage';
 import RemindersListPage from '../pages/reminders-list-page/RemindersListPage';
+import './reminders-layout.scss';
 
 const RemindersLayout = () => {
 	const auth = useAuth();
@@ -11,7 +12,7 @@ const RemindersLayout = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div>
+		<div className="reminders-layout">
 			<AppBar position="sticky">
 				<Toolbar variant="dense">
 					<IconButton sx={{ marginLeft: 'auto' }} color="inherit" onClick={auth.signOut}>

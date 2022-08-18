@@ -3,8 +3,7 @@ import './dashboard-page.scss';
 import useGetDashboardReminders from '../../api/useGetDashboardReminders';
 import useReminderCounters from '../../api/useReminderCounters';
 import Reminder from '../../components/reminder/Reminder';
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
-import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import FullscreenLoader from '../../../../ui-kit/fullscreen-loader/FullscreenLoader';
 
 const DashboardPage = () => {
@@ -22,21 +21,21 @@ const DashboardPage = () => {
 					<Grid item xs={6}>
 						<Typography align="center">Incomplete</Typography>
 						<Box className="counter">
-							<HourglassEmptyIcon />
+							<CalendarTodayIcon color="primary" />
 							<span>{incomplete}</span>
 						</Box>
 					</Grid>
 					<Grid item xs={6}>
 						<Typography align="center">Complete</Typography>
 						<Box className="counter">
-							<AssignmentTurnedInIcon />
+							<CalendarTodayIcon color="primary" />
 							<span>{complete}</span>
 						</Box>
 					</Grid>
 					{reminders && reminders.length > 0 ? (
 						<Grid item xs={12}>
 							<Typography variant="h5" fontWeight="bold">
-								Overdue
+								Incomplete overdue
 							</Typography>
 							<List className="reminders-list">
 								{reminders.map((reminder) => (

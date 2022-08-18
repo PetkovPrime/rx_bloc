@@ -141,7 +141,7 @@ const RemindersListPage = () => {
 
 				{reminders.future.length > 0 && (
 					<>
-						<ListSubheader>Future</ListSubheader>
+						<ListSubheader>In future</ListSubheader>
 						{reminders.future.map((reminder) => (
 							<Reminder
 								key={reminder.id}

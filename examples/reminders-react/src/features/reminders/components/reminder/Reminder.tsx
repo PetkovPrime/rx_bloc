@@ -80,7 +80,7 @@ const Reminder = ({ reminder, innerRef }: ReminderProps) => {
 				type="date"
 				className="date"
 			>
-				{dueDate.toLocaleDateString()}
+				{dueDate.toLocaleDateString('en-US')}
 			</EditableText>
 			<IconButton onClick={(event) => setMenuAnchorEl(event.currentTarget)}>
 				<MoreVertIcon />
@@ -99,7 +99,7 @@ const Reminder = ({ reminder, innerRef }: ReminderProps) => {
 							<CheckBoxIcon color="success" />
 						)}
 					</ListItemIcon>
-					<ListItemText primary={reminder.complete ? 'Uncomplete' : 'Complete'} />
+					<ListItemText primary={reminder.complete ? 'Incomplete' : 'Complete'} />
 				</MenuItem>
 				<MenuItem onClick={handleClickDelete}>
 					<ListItemIcon>
