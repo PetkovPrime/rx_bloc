@@ -9,7 +9,7 @@ const LoginPage = () => {
 	const location = useLocation();
 
 	if (auth.state?.isAuthenticated) {
-		if ((location.state as any).from) {
+		if ((location.state as any)?.from) {
 			return <Navigate to={(location.state as any).from} />;
 		}
 
