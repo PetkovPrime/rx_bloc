@@ -48,6 +48,9 @@ const useInfiniteCollection = <T extends BaseDocumentType>(
 			);
 			unsubscribe.current = onSnapshot(queryRef, {
 				next: (snapshot) => {
+					if (snapshot.metadata.fromCache) {
+						return;
+					}
 					setHasMore(snapshot.size == limit + count);
 					setData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 					setIsLoading(false);
