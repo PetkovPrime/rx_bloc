@@ -49,7 +49,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	useEffect(() => {
 		const unsubscribe = firebaseAuth.onIdTokenChanged((user) => {
 			setIsInitialLoading(false);
-			if (state.user.isAnonymous) return;
 			if (user) {
 				setState({
 					user: {
@@ -59,6 +58,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 					isAuthenticated: true
 				});
 			} else {
+				if (state.user.isAnonymous) return;
 				setState(initialState);
 			}
 		});
