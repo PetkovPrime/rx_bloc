@@ -13,7 +13,7 @@ const RemindersLayout = () => {
 
 	return (
 		<div className="reminders-layout">
-			<AppBar position="sticky">
+			<AppBar position="sticky" color="primary">
 				<Toolbar variant="dense">
 					<IconButton sx={{ marginLeft: 'auto' }} color="inherit" onClick={auth.signOut}>
 						<LogoutIcon />

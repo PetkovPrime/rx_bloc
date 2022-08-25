@@ -1,9 +1,9 @@
 .reminder-list-page {
-  padding: 1rem;
+  padding: 0 1rem;
+  max-width: var(--reminders-width);
+  margin: 0 auto;
 
   .reminder-list {
-    max-width: var(--reminders-width);
-    margin: 0 auto;
     border-radius: 1rem;
 
     .reminder {

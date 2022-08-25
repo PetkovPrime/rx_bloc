@@ -17,6 +17,7 @@
       width: 100%;
       max-width: 400px;
       padding: 1rem 0.75rem 0.95rem;
+      height: 3.25rem;
       border-radius: 1rem;
       border: 1px solid;
       font-size: 1rem;
@@ -30,17 +31,8 @@
       border-color: var(--gray);
     }
     .login-facebook {
-      color: var(--primary);
-      border-color: var(--primary);
-    }
-  }
-
-  .login-loader {
-    align-self: center;
-    margin-top: 1rem;
-    visibility: hidden;
-    &.visible {
-      visibility: visible;
+      color: var(--primary500);
+      border-color: var(--primary500);
     }
   }
 }

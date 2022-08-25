@@ -4,8 +4,16 @@ import WorkSans500 from './fonts/work-sans-v18-latin-500.woff';
 import WorkSans600 from './fonts/work-sans-v18-latin-600.woff';
 import WorkSans700 from './fonts/work-sans-v18-latin-700.woff';
 import WorkSans900 from './fonts/work-sans-v18-latin-900.woff';
+import { blue } from '@mui/material/colors';
 
 const theme = createTheme({
+	palette: {
+		primary: {
+			main: blue[700],
+			dark: blue[800],
+			'500': blue[500]
+		}
+	},
 	typography: {
 		fontFamily: ['Work Sans', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'].join(',')
 	},

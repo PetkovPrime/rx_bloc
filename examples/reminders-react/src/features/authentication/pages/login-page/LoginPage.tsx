@@ -25,19 +25,19 @@ const LoginPage = () => {
 			<div className="headers">
 				<Typography
 					component="h1"
-					variant="h4"
-					color="primary"
-					fontWeight="bold"
+					variant="h5"
+					color="primary.500"
 					align="center"
+					fontWeight={500}
 				>
 					Reminders
 				</Typography>
 				<Typography
 					component="h2"
-					variant="h6"
-					color="primary"
-					fontWeight="bold"
+					variant="h5"
+					color="primary.500"
 					align="center"
+					fontWeight={500}
 				>
 					Log in
 				</Typography>
@@ -46,12 +46,16 @@ const LoginPage = () => {
 				<ButtonBase className="login-anon" onClick={auth.signInAnonymously}>
 					Log in as anonymous
 				</ButtonBase>
-				<ButtonBase className="login-facebook" onClick={auth.signInWithFacebook}>
-					Log in in with facebook
+				<ButtonBase
+					className={`login-facebook ${auth.isLoading ? 'loading' : ''}`}
+					onClick={auth.signInWithFacebook}
+				>
+					{auth.isLoading ? (
+						<CircularProgress color="inherit" size="2rem" />
+					) : (
+						'Log in with facebook'
+					)}
 				</ButtonBase>
-			</div>
-			<div className={'login-loader' + (auth.isLoading ? ' visible' : '')}>
-				<CircularProgress />
 			</div>
 		</div>
 	);
