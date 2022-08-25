@@ -34,7 +34,7 @@ const DashboardPage = () => {
 					</Grid>
 					{reminders && reminders.length > 0 ? (
 						<Grid item xs={12}>
-							<Typography pl={2} variant="h5" fontWeight="bold">
+							<Typography pl={2} variant="h5" fontWeight={500}>
 								Incomplete overdue
 							</Typography>
 							<List className="reminders-list">

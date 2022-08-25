@@ -12,7 +12,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { db } from '../../../api/firebase';
 import useAuth from '../../authentication/hooks/useAuth';
 import Counters from '../types/countersType';
-import RemindersLength from '../types/remidnersLengthType';
+import RemindersLength from '../types/remindersLengthType';
 
 const countersCollection = 'counters';
 const totalCollection = 'remindersLengths';

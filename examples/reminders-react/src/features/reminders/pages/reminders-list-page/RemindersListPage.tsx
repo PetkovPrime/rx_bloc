@@ -1,5 +1,5 @@
 import useGetMyReminders from '../../api/useGetMyReminders';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reminder from '../../components/reminder/Reminder';
 import './reminder-list.scss';
 import CreateReminderModal from '../../components/create-reminder-modal/CreateReminderModal';
@@ -83,6 +83,20 @@ const RemindersListPage = () => {
 		[addReminder, enqueueSnackbar]
 	);
 
+	const getReminderClass = (length: number, index: number): string => {
+		let className = '';
+		if (index === 0) className += 'first ';
+		if (index === length - 1) className += 'last';
+		return className;
+	};
+
+	const titles = {
+		overdue: 'Overdue',
+		today: 'Today',
+		thisMonth: 'This month',
+		future: 'In future'
+	};
+
 	return (
 		<div className="reminder-list-page">
 			<Fab
@@ -101,57 +115,25 @@ const RemindersListPage = () => {
 				<Typography align="center">You have no reminders.</Typography>
 			)}
 			<List className="reminder-list">
-				{reminders.overdue.length > 0 && (
-					<>
-						<ListSubheader>Overdue</ListSubheader>
-						{reminders.overdue.map((reminder) => (
-							<Reminder
-								key={reminder.id}
-								reminder={reminder}
-								innerRef={(el) => (refs.current[reminder.id] = el)}
-							/>
-						))}
-					</>
-				)}
-
-				{reminders.today.length > 0 && (
-					<>
-						<ListSubheader>Today</ListSubheader>
-						{reminders.today.map((reminder) => (
-							<Reminder
-								key={reminder.id}
-								reminder={reminder}
-								innerRef={(el) => (refs.current[reminder.id] = el)}
-							/>
-						))}
-					</>
-				)}
-
-				{reminders.thisMonth.length > 0 && (
-					<>
-						<ListSubheader>This month</ListSubheader>
-						{reminders.thisMonth.map((reminder) => (
-							<Reminder
-								key={reminder.id}
-								reminder={reminder}
-								innerRef={(el) => (refs.current[reminder.id] = el)}
-							/>
-						))}
-					</>
-				)}
-
-				{reminders.future.length > 0 && (
-					<>
-						<ListSubheader>In future</ListSubheader>
-						{reminders.future.map((reminder) => (
-							<Reminder
-								key={reminder.id}
-								reminder={reminder}
-								innerRef={(el) => (refs.current[reminder.id] = el)}
-							/>
-						))}
-					</>
-				)}
+				{Object.entries(reminders).map(([key, entry]) => {
+					if (entry.length == 0) {
+						return null;
+					}
+					const title = titles[key as keyof typeof titles];
+					return (
+						<Fragment key={key}>
+							<ListSubheader>{title}</ListSubheader>
+							{entry.map((reminder, index, arr) => (
+								<Reminder
+									key={reminder.id}
+									className={getReminderClass(arr.length, index)}
+									reminder={reminder}
+									innerRef={(el) => (refs.current[reminder.id] = el)}
+								/>
+							))}
+						</Fragment>
+					);
+				})}
 			</List>
 			{isLoading && <FullscreenLoader />}
 		</div>

@@ -1,5 +1,5 @@
 .dashboard-page {
-  max-width: 450px;
+  max-width: var(--reminders-width);
   width: 100%;
   margin: 0 auto;
   padding: 1rem 0 1.5rem;
@@ -25,8 +25,8 @@
     overflow: hidden;
     border-radius: 1rem;
     background-color: var(--light-gray);
-    .reminder:last-of-type {
-      border: 0;
+    .reminder:last-of-type:after {
+      content: none;
     }
   }
 }

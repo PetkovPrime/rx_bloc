@@ -26,6 +26,14 @@
     }
   }
 
+  .MuiTextField-root {
+    width: 100%;
+    margin: -4px 0 -5px 0;
+    textarea {
+      line-height: 1.5rem;
+    }
+  }
+
   .input {
     height: 1.2rem;
     margin-top: 5px;

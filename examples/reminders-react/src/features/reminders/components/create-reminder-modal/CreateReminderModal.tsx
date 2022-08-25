@@ -55,7 +55,6 @@ const CreateReminderModal = ({ isOpen, onClose, onCreate }: CreateReminderModalP
 						<MobileDatePicker
 							onChange={(date) => setDate(date ?? getDateForInput(new Date()))}
 							value={date}
-							disableMaskedInput
 							renderInput={(params) => (
 								<TextField {...params} variant="standard" label="Date" />
 							)}

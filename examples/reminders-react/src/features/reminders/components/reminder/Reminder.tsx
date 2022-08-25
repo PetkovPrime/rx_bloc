@@ -6,6 +6,7 @@ import useEditReminder from '../../api/useEditReminder';
 import getDateForInput from '../../utils/getDateForInput';
 import useDeleteReminder from '../../api/useDeleteReminder';
 import {
+	Checkbox,
 	IconButton,
 	ListItem,
 	ListItemIcon,
@@ -15,16 +16,17 @@ import {
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/DeleteOutline';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import { useSnackbar } from 'notistack';
 
 interface ReminderProps {
 	reminder: ReminderType;
 	innerRef?: (instance: HTMLLIElement) => void;
+	className?: string;
 }
 
-const Reminder = ({ reminder, innerRef }: ReminderProps) => {
+const Reminder = ({ reminder, innerRef, className }: ReminderProps) => {
 	const editReminder = useEditReminder();
 	const deleteReminder = useDeleteReminder();
 	const { enqueueSnackbar } = useSnackbar();
@@ -62,14 +64,19 @@ const Reminder = ({ reminder, innerRef }: ReminderProps) => {
 	};
 
 	return (
-		<ListItem
-			ref={innerRef}
-			className={`reminder ${reminder.complete ? 'complete' : ''}`}
-		>
+		<ListItem ref={innerRef} className={`reminder ${className ?? ''}`}>
+			<Checkbox
+				size="medium"
+				icon={<RadioButtonUncheckedIcon />}
+				checkedIcon={<RadioButtonCheckedIcon />}
+				checked={reminder.complete}
+				onClick={handleToggleComplete}
+			/>
 			<EditableText
 				value={reminder.title}
 				onChange={handleTitleChange}
 				type="text"
+				multiline
 				className="title"
 			>
 				{reminder.title}
@@ -91,16 +98,6 @@ const Reminder = ({ reminder, innerRef }: ReminderProps) => {
 				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 				onClose={() => setMenuAnchorEl(null)}
 			>
-				<MenuItem onClick={handleToggleComplete}>
-					<ListItemIcon>
-						{!reminder.complete ? (
-							<CheckBoxOutlineBlankIcon />
-						) : (
-							<CheckBoxIcon color="success" />
-						)}
-					</ListItemIcon>
-					<ListItemText primary={reminder.complete ? 'Incomplete' : 'Complete'} />
-				</MenuItem>
 				<MenuItem onClick={handleClickDelete}>
 					<ListItemIcon>
 						<DeleteIcon color="error" />

@@ -1,5 +1,6 @@
 import {
 	HTMLInputTypeAttribute,
+	KeyboardEvent,
 	ReactNode,
 	useCallback,
 	useEffect,
@@ -18,6 +19,7 @@ interface EditableTextProps {
 	onChange: (value: string) => Promise<any> | void;
 	children: ReactNode;
 	type: HTMLInputTypeAttribute;
+	multiline?: boolean;
 	className?: string;
 }
 
@@ -26,12 +28,17 @@ const EditableText = ({
 	onChange,
 	children,
 	type = 'text',
+	multiline,
 	className
 }: EditableTextProps) => {
 	const [isEditing, setIsEditing] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 	const [rawValue, setRawValue] = useState(value);
 	const containerRef = useRef<HTMLDivElement | null>(null);
+
+	const trimValue = (value: string) => {
+		return value.replace(/\s+/g, ' ').trim();
+	};
 
 	const handleClick = () => {
 		if (!isEditing) {
@@ -40,13 +47,28 @@ const EditableText = ({
 			setRawValue(value);
 		}
 	};
+
 	const handleEndEditing = useCallback(() => {
+		if (rawValue.length === 0) {
+			setIsEditing(false);
+			return;
+		}
 		setIsLoading(true);
-		Promise.all([onChange(rawValue)]).finally(() => {
+		Promise.all([onChange(trimValue(rawValue))]).finally(() => {
 			setIsEditing(false);
 			setIsLoading(false);
 		});
 	}, [onChange, rawValue]);
+
+	const handleKeyPress = useCallback(
+		(e: KeyboardEvent<HTMLDivElement>) => {
+			if (e.key === 'Enter') {
+				e.preventDefault();
+				handleEndEditing();
+			}
+		},
+		[handleEndEditing]
+	);
 
 	useEffect(() => {
 		if (isEditing && type !== 'date') {
@@ -84,8 +106,10 @@ const EditableText = ({
 					/>
 				) : (
 					<TextField
+						multiline={multiline}
 						value={rawValue}
 						onChange={(e) => setRawValue(e.target.value)}
+						onKeyDown={handleKeyPress}
 						type={type}
 						autoFocus
 						variant="standard"

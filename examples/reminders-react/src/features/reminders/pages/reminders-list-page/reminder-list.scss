@@ -2,27 +2,33 @@
   padding: 1rem;
 
   .reminder-list {
-    max-width: 450px;
+    max-width: var(--reminders-width);
     margin: 0 auto;
     border-radius: 1rem;
 
-    .reminder:nth-child(2) {
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-    }
-    .reminder:last-of-type {
-      border-bottom-left-radius: 1rem;
-      border-bottom-right-radius: 1rem;
-      border: 0;
+    .reminder {
+      &.first {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+      }
+      &.last {
+        &:after {
+          content: none;
+        }
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+      }
     }
 
     .MuiListSubheader-root {
       margin-top: 1rem;
       color: black;
       font-size: 1.5rem;
-      font-weight: bold;
       background-color: var(--reminders-bg);
       top: 96px;
+      &:first-of-type {
+        margin-top: 0;
+      }
     }
   }
 
