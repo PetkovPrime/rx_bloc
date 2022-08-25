@@ -4,9 +4,10 @@ import Reminder from '../../components/reminder/Reminder';
 import './reminder-list.scss';
 import CreateReminderModal from '../../components/create-reminder-modal/CreateReminderModal';
 import useAddReminder from '../../api/useAddReminder';
-import { CircularProgress, Fab, List, ListSubheader, Typography } from '@mui/material';
+import { Fab, List, ListSubheader, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useSnackbar } from 'notistack';
+import FullscreenLoader from '../../../../ui-kit/fullscreen-loader/FullscreenLoader';
 
 const RemindersListPage = () => {
 	const { data: rawReminders, isLoading, hasMore, next } = useGetMyReminders();
@@ -152,11 +153,7 @@ const RemindersListPage = () => {
 					</>
 				)}
 			</List>
-			{isLoading && (
-				<div className="loader-container">
-					<CircularProgress />
-				</div>
-			)}
+			{isLoading && <FullscreenLoader />}
 		</div>
 	);
 };
