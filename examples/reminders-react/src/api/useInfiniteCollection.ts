@@ -6,16 +6,16 @@ import {
 	onSnapshot,
 	orderBy,
 	query,
-	QueryConstraint,
 	Unsubscribe
 } from 'firebase/firestore';
 import { db } from './firebase';
 import BaseDocumentType from './baseDocumentType';
+import getConstraints, { Constraints } from './constraintsService';
 
 const useInfiniteCollection = <T extends BaseDocumentType>(
 	collectionName: string,
 	orderByKey: keyof T & string,
-	constraints?: QueryConstraint[]
+	constraints: Constraints<T> = {}
 ) => {
 	const [data, setData] = useState<T[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +38,7 @@ const useInfiniteCollection = <T extends BaseDocumentType>(
 			setIsLoading(true);
 
 			const queryConstraints = [
-				...(constraints ?? []),
+				...getConstraints(constraints),
 				orderBy(orderByKey, 'asc'),
 				limitConstraint(limit + count)
 			];

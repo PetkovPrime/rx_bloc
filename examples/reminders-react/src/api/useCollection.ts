@@ -3,15 +3,15 @@ import {
 	collection as getCollection,
 	FirestoreError,
 	onSnapshot,
-	query,
-	QueryConstraint
+	query
 } from 'firebase/firestore';
 import { db } from './firebase';
 import BaseDocumentType from './baseDocumentType';
+import getConstraints, { Constraints } from './constraintsService';
 
 const useCollection = <T extends BaseDocumentType>(
 	collectionName: string,
-	constraints?: QueryConstraint[]
+	constraints: Constraints<T> = {}
 ) => {
 	const [data, setData] = useState<T[] | null>();
 	const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +19,10 @@ const useCollection = <T extends BaseDocumentType>(
 
 	useEffect(() => {
 		setIsLoading(true);
-		const queryRef = query(getCollection(db, collectionName), ...(constraints ?? []));
+		const queryRef = query(
+			getCollection(db, collectionName),
+			...getConstraints(constraints)
+		);
 		const unsubscribe = onSnapshot(queryRef, {
 			next: (snapshot) => {
 				setData(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })) as T[]);
