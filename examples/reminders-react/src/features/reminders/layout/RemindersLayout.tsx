@@ -5,11 +5,19 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import DashboardPage from '../pages/dashboard-page/DashboardPage';
 import RemindersListPage from '../pages/reminders-list-page/RemindersListPage';
 import './reminders-layout.scss';
+import { useEffect } from 'react';
 
 const RemindersLayout = () => {
 	const auth = useAuth();
 	const { tab } = useParams();
 	const navigate = useNavigate();
+
+	const dashboardVisible = tab === undefined || tab === 'dashboard';
+	const remindersListVisible = tab === 'reminders';
+
+	useEffect(() => {
+		window.scrollTo({ top: 0, behavior: 'auto' });
+	}, [tab]);
 
 	return (
 		<div className="reminders-layout">
@@ -29,11 +37,11 @@ const RemindersLayout = () => {
 					<Tab value="reminders" label="reminders" />
 				</Tabs>
 			</AppBar>
-			<Box display={tab === undefined || tab === 'dashboard' ? 'block' : 'none'}>
-				<DashboardPage />
+			<Box display={dashboardVisible ? 'block' : 'none'}>
+				<DashboardPage visible={dashboardVisible} />
 			</Box>
-			<Box display={tab === 'reminders' ? 'block' : 'none'}>
-				<RemindersListPage />
+			<Box display={remindersListVisible ? 'block' : 'none'}>
+				<RemindersListPage visible={remindersListVisible} />
 			</Box>
 		</div>
 	);

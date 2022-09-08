@@ -8,7 +8,7 @@ const useGetMyReminders = () => {
 		throw 'Must be logged in to get reminders';
 	}
 
-	return useInfiniteCollection<Reminder>('reminders', 'dueDate', {
+	return useInfiniteCollection<Reminder>('reminders', 25, 'dueDate', {
 		authorId: state.user.id
 	});
 };

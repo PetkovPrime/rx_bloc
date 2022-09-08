@@ -5,16 +5,30 @@ import useReminderCounters from '../../api/useReminderCounters';
 import Reminder from '../../components/reminder/Reminder';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import FullscreenLoader from '../../../../ui-kit/fullscreen-loader/FullscreenLoader';
+import { useCallback } from 'react';
+import useScrollBottom from '../../utils/useScrollBottom';
 
-const DashboardPage = () => {
+interface DashboardPageProps {
+	visible: boolean;
+}
+
+const DashboardPage = ({ visible }: DashboardPageProps) => {
 	const { complete, incomplete, isLoading: isLoadingCounters } = useReminderCounters();
-	const { data: reminders, isLoading: isLoadingReminders } = useGetDashboardReminders();
+	const {
+		data: reminders,
+		next,
+		isLoading: isLoadingReminders
+	} = useGetDashboardReminders();
 
-	const isLoading = isLoadingCounters || isLoadingReminders;
+	const handleScrollBottom = useCallback(() => {
+		next(10);
+	}, [next]);
+
+	useScrollBottom(visible, handleScrollBottom);
 
 	return (
 		<div className="dashboard-page">
-			{isLoading ? (
+			{isLoadingCounters ? (
 				<FullscreenLoader />
 			) : (
 				<Grid container spacing={3}>
@@ -32,18 +46,18 @@ const DashboardPage = () => {
 							<span>{complete}</span>
 						</Box>
 					</Grid>
-					{reminders && reminders.length > 0 ? (
-						<Grid item xs={12}>
-							<Typography pl={2} variant="h5" fontWeight={500}>
-								Incomplete overdue
-							</Typography>
-							<List className="reminders-list">
-								{reminders.map((reminder) => (
-									<Reminder key={reminder.id} reminder={reminder} />
-								))}
-							</List>
-						</Grid>
-					) : (
+					{isLoadingReminders && <FullscreenLoader />}
+					<Grid item xs={12}>
+						<Typography pl={2} variant="h5" fontWeight={500}>
+							Incomplete overdue
+						</Typography>
+						<List className="reminders-list">
+							{reminders.map((reminder) => (
+								<Reminder key={reminder.id} reminder={reminder} />
+							))}
+						</List>
+					</Grid>
+					{!isLoadingReminders && reminders.length == 0 && (
 						<Grid item xs={12}>
 							<Typography align="center">You have no reminders due soon</Typography>
 						</Grid>

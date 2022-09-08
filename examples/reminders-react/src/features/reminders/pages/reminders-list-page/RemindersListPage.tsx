@@ -1,5 +1,5 @@
 import useGetMyReminders from '../../api/useGetMyReminders';
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useCallback, useMemo, useRef, useState } from 'react';
 import Reminder from '../../components/reminder/Reminder';
 import './reminder-list.scss';
 import CreateReminderModal from '../../components/create-reminder-modal/CreateReminderModal';
@@ -8,8 +8,13 @@ import { Fab, List, ListSubheader, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useSnackbar } from 'notistack';
 import FullscreenLoader from '../../../../ui-kit/fullscreen-loader/FullscreenLoader';
+import useScrollBottom from '../../utils/useScrollBottom';
 
-const RemindersListPage = () => {
+interface ReminderListPageProps {
+	visible: boolean;
+}
+
+const RemindersListPage = ({ visible }: ReminderListPageProps) => {
 	const { data: rawReminders, isLoading, hasMore, next } = useGetMyReminders();
 	const addReminder = useAddReminder();
 	const { enqueueSnackbar } = useSnackbar();
@@ -49,27 +54,11 @@ const RemindersListPage = () => {
 		};
 	}, [rawReminders]);
 
-	// Initial loading of reminders
-	useEffect(() => {
-		next(30);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	useEffect(() => {
-		const handler = () => {
-			const scrollTop = document.documentElement.scrollTop;
-			const scrollMax =
-				document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-			if (scrollTop > scrollMax - 200) {
-				next(25);
-			}
-		};
-		document.addEventListener('scroll', handler);
-		return () => {
-			document.removeEventListener('scroll', handler);
-		};
+	const handleScrollBottom = useCallback(() => {
+		next(10);
 	}, [next]);
+
+	useScrollBottom(visible, handleScrollBottom);
 
 	const handleCreateReminder = useCallback(
 		(data: { date: string; title: string }) => {
