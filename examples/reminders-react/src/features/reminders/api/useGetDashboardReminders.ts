@@ -22,8 +22,7 @@ const useGetDashboardReminders = () => {
 			{ dueDate: ['<=', new Date()] },
 			{ dueDate: ['>=', new Date(Date.now() - days10)] }
 		],
-		$orderBy: 'dueDate',
-		$limit: 5
+		$orderBy: 'dueDate'
 	});
 };
 
