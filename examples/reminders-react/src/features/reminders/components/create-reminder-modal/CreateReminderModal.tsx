@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import getDateForInput from '../../utils/getDateForInput';
 import {
-	Box,
 	Button,
 	Dialog,
 	DialogActions,
 	DialogContent,
 	DialogTitle,
-	FormLabel,
 	Grid,
 	TextField
 } from '@mui/material';
@@ -22,11 +20,19 @@ interface CreateReminderModalProps {
 const CreateReminderModal = ({ isOpen, onClose, onCreate }: CreateReminderModalProps) => {
 	const [title, setTitle] = useState('');
 	const [date, setDate] = useState(getDateForInput(new Date()));
-	const [error, setError] = useState('');
+	const [error, setError] = useState<null | string>(null);
 
 	useEffect(() => {
-		setError('');
+		setError(null);
 	}, [isOpen]);
+
+	useEffect(() => {
+		if (error) {
+			if (title.trim().length > 0) {
+				setError(null);
+			}
+		}
+	}, [error, title]);
 
 	const handleClickCreate = useCallback(() => {
 		if (title.trim().length == 0) {
@@ -49,6 +55,8 @@ const CreateReminderModal = ({ isOpen, onClose, onCreate }: CreateReminderModalP
 							onChange={(e) => setTitle(e.target.value)}
 							variant="standard"
 							label="Title"
+							error={error != null}
+							helperText={error ?? ' '}
 						/>
 					</Grid>
 					<Grid item>
@@ -61,13 +69,6 @@ const CreateReminderModal = ({ isOpen, onClose, onCreate }: CreateReminderModalP
 						/>
 					</Grid>
 				</Grid>
-				{error && (
-					<Box mt={2}>
-						<FormLabel color="error" error>
-							{error}
-						</FormLabel>
-					</Box>
-				)}
 			</DialogContent>
 			<DialogActions>
 				<Button sx={{ marginLeft: 'auto' }} variant="text" onClick={handleClickCreate}>
