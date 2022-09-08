@@ -46,9 +46,14 @@ const Reminder = ({ reminder, innerRef, className }: ReminderProps) => {
 	);
 
 	const handleDateChange = useCallback(
-		(date: string) => {
-			if (date.length == 0) return;
-			return editReminder.mutate(reminder.id, { dueDate: new Date(date) });
+		(dateStr: string) => {
+			if (dateStr.length == 0) return;
+
+			const date = new Date(dateStr);
+			const dateTime = new Date();
+			dateTime.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+
+			return editReminder.mutate(reminder.id, { dueDate: dateTime });
 		},
 		[editReminder, reminder.id]
 	);

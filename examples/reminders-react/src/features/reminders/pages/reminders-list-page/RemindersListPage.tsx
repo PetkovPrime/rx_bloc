@@ -73,8 +73,12 @@ const RemindersListPage = () => {
 
 	const handleCreateReminder = useCallback(
 		(data: { date: string; title: string }) => {
+			const date = new Date(data.date);
+			const dateTime = new Date();
+			dateTime.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+
 			addReminder
-				.mutate({ title: data.title, dueDate: new Date(data.date), complete: false })
+				.mutate({ title: data.title, dueDate: dateTime, complete: false })
 				.then((ref) => {
 					enqueueSnackbar(`Reminder with title "${data.title}" was created.`);
 					refs.current[ref.id]?.scrollIntoView({ behavior: 'smooth', block: 'center' });
