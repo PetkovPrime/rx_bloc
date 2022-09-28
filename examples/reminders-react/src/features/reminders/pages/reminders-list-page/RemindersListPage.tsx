@@ -25,11 +25,10 @@ const RemindersListPage = ({ visible }: ReminderListPageProps) => {
 
 	const reminders = useMemo(() => {
 		const startToday = new Date();
-		// Set time to start of day and add required hours to match the current time zone
-		startToday.setHours(0, -startToday.getTimezoneOffset(), 0, 0);
+		startToday.setHours(0, 0, 0, 0);
 
 		const endToday = new Date();
-		endToday.setHours(23, 59 + startToday.getTimezoneOffset(), 59, 999);
+		endToday.setHours(23, 59, 59, 999);
 
 		const endMonth = new Date(endToday);
 		endMonth.setMonth(endMonth.getMonth() + 1, 0);
@@ -41,6 +40,7 @@ const RemindersListPage = ({ visible }: ReminderListPageProps) => {
 			}),
 			today: rawReminders.filter((reminder) => {
 				const date = reminder.dueDate.toDate();
+				console.log(date, startToday, endToday);
 				return date >= startToday && date <= endToday;
 			}),
 			thisMonth: rawReminders.filter((reminder) => {

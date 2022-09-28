@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 const useScrollBottom = (enabled: boolean, callback: () => void) => {
 	useEffect(() => {
-		console.log('useEffect');
 		let reachedScroll = 0;
 		const handler = () => {
 			if (!enabled) {
