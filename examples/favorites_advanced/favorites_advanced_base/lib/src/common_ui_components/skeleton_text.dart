@@ -15,6 +15,8 @@ class SkeletonText extends StatelessWidget {
   final TextStyle? style;
   final int skeletons;
 
+  static bool testMode = false;
+
   @override
   Widget build(BuildContext context) => AnimatedSwitcher(
         duration: Duration(milliseconds: 300),
@@ -42,16 +44,23 @@ class SkeletonText extends StatelessWidget {
           );
   }
 
-  SkeletonAnimation _buildSkeleton() {
-    return SkeletonAnimation(
-      child: Container(
-        width: double.infinity,
-        height: height,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: Colors.grey[300],
-        ),
+  Widget _buildSkeleton() {
+    final container  = Container(
+      width: double.infinity,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.grey[300],
       ),
+    );
+
+    if(testMode == true) {
+      return container;
+    }
+
+
+    return SkeletonAnimation(
+      child: container,
     );
   }
 }
