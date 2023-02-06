@@ -8,34 +8,34 @@ Before you start working on your app, make sure you familiarize yourself with th
 
 ## Project structure
 
-| Path | Contains |
-| ------------ | ------------ |
-| `lib/base/` | Common code used on more than one **feature** in the project. |
-| `lib/base/app/` | The root of the application and Environment configuration. |
-| `lib/base/common_blocs/` | Global [BLoCs][rx_bloc_info_lnk]|
-| `lib/base/common_ui_components/` | Reusable widgets (buttons, controls etc) |
-| `lib/base/common_use_cases/` | Global UseCases |
-| `lib/base/data_sources/` | All data sources are placed here. |
-| `lib/base/data_sources/domain/` | Data sources,  relating to a specific domain |
-| `lib/base/data_sources/domain/counter/` | Data sources,  relating to the counter domain |
-| `lib/base/data_sources/local/` | Local data sources, such as shared preferences, secured storage etc. |
-| `lib/base/data_sources/remote/` | External data sources like APIs. Here is placed all [retrofit][retrofit_lnk] code. |
-| `lib/base/data_sources/remote/interceptors/` | Custom interceptors that can monitor, rewrite, and retry calls. |
-| `lib/base/di/` | Global dependencies, available in the whole app|
-| `lib/base/extensions/` | Global [extension methods][extension_methods_lnk] |
-| `lib/base/models/` | Data models used in the project |
-| `lib/base/repositories/` | Repositories used to fetch and persist models.
-| `lib/base/routers/` | All [routers][autoroute_usage_lnk] are placed here. The main [router][autoroute_usage_lnk] of the app is `lib/base/routers/router.dart`. |
-| `lib/base/routers/guards/` | The routers' [guards][autoroute_usage_lnk] of the app are placed here. |
-| `lib/base/theme/` | The custom theme of the app |
-| `lib/base/utils/` | Global utils |
-| `lib/feature_X/` | Feature related classes |
-| `lib/feature_X/blocs` | Feature related [BLoCs][rx_bloc_info_lnk] |
-| `lib/feature_X/di` | Feature related dependencies |
-| `lib/feature_X/use_cases/` | Feature related UseCases |
-| `lib/feature_X/ui_components/` | Feature related custom widgets |
-| `lib/feature_X/views/` | Feature related pages and forms |
-| `lib/main.dart` | The main file of the app. If there are more that one main file, each of them is related to separate flavor of the app. |
+| Path                                         | Contains                                                                                                                                 |
+|----------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| `lib/base/`                                  | Common code used on more than one **feature** in the project.                                                                            |
+| `lib/base/app/`                              | The root of the application and Environment configuration.                                                                               |
+| `lib/base/common_blocs/`                     | Global [BLoCs][rx_bloc_info_lnk]                                                                                                         |
+| `lib/base/common_ui_components/`             | Reusable widgets (buttons, controls etc)                                                                                                 |
+| `lib/base/common_use_cases/`                 | Global UseCases                                                                                                                          |
+| `lib/base/data_sources/`                     | All data sources are placed here.                                                                                                        |
+| `lib/base/data_sources/domain/`              | Data sources,  relating to a specific domain                                                                                             |
+| `lib/base/data_sources/domain/counter/`      | Data sources,  relating to the counter domain                                                                                            |
+| `lib/base/data_sources/local/`               | Local data sources, such as shared preferences, secured storage etc.                                                                     |
+| `lib/base/data_sources/remote/`              | External data sources like APIs. Here is placed all [retrofit][retrofit_lnk] code.                                                       |
+| `lib/base/data_sources/remote/interceptors/` | Custom interceptors that can monitor, rewrite, and retry calls.                                                                          |
+| `lib/base/di/`                               | Global dependencies, available in the whole app                                                                                          |
+| `lib/base/extensions/`                       | Global [extension methods][extension_methods_lnk]                                                                                        |
+| `lib/base/models/`                           | Data models used in the project                                                                                                          |
+| `lib/base/repositories/`                     | Repositories used to fetch and persist models.                                                                                           |
+| `lib/base/routers/`                          | All [routers][autoroute_usage_lnk] are placed here. The main [router][autoroute_usage_lnk] of the app is `lib/base/routers/router.dart`. |
+| `lib/base/routers/guards/`                   | The routers' [guards][autoroute_usage_lnk] of the app are placed here.                                                                   |
+| `lib/base/theme/`                            | The custom theme of the app                                                                                                              |
+| `lib/base/utils/`                            | Global utils                                                                                                                             |
+| `lib/feature_X/`                             | Feature related classes                                                                                                                  |
+| `lib/feature_X/blocs`                        | Feature related [BLoCs][rx_bloc_info_lnk]                                                                                                |
+| `lib/feature_X/di`                           | Feature related dependencies                                                                                                             |
+| `lib/feature_X/use_cases/`                   | Feature related UseCases                                                                                                                 |
+| `lib/feature_X/ui_components/`               | Feature related custom widgets                                                                                                           |
+| `lib/feature_X/views/`                       | Feature related pages and forms                                                                                                          |
+| `lib/main.dart`                              | The main file of the app. If there are more that one main file, each of them is related to separate flavor of the app.                   |
 
 ## Feature structure
 

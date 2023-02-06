@@ -10,4 +10,6 @@ class Keys {
   static const puppySearchPage = 'puppySearchPage';
   static const puppyFavoritesPage = 'puppyFavoritesPage';
   static const puppyDetailsPage = 'puppyDetailsPage';
+  static const hotelSearchElement = 'hotelSearchElement';
+  static const hotelSortElement = 'hotelSortElement';
 }

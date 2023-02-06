@@ -40,6 +40,8 @@ dependencies:
 dev_dependencies:
   integration_test:
     sdk: flutter
+  flutter_test:
+    sdk: flutter
   auto_route_generator: any
   build_runner: ^2.0.0
   clean_coverage: ^0.0.3
