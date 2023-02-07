@@ -7,21 +7,21 @@ import 'base_page.dart';
 
 class SearchPage extends BasePage{
 
-  final Finder loc_inputSearch = find.byKey(const Key(Keys.hotelSearchElement));
-  final Finder loc_sortBtn = find.byKey(const Key(Keys.hotelSortElement));
+  final Finder locInputSearch = find.byKey(const Key(Keys.hotelSearchElement));
+  final Finder locSortBtn = find.byKey(const Key(Keys.hotelSortElement));
 
 
   SearchPage(WidgetTester tester) : super(tester);
 
   Future<void> tapSortBtn() async{
-    await tapElement(loc_sortBtn);
+    await tapElement(locSortBtn);
   }
 
   Future<void> tapSearchBox() async{
-    await tapElement(loc_inputSearch);
+    await tapElement(locInputSearch);
   }
 
   Future<void> setSearchBox(String text) async {
-    await setText(loc_inputSearch, text);
+    await setText(locInputSearch, text);
   }
 }
