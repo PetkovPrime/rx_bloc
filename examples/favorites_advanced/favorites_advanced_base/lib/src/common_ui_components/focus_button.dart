@@ -13,6 +13,7 @@ class FocusButton extends StatelessWidget {
   Widget build(BuildContext context) => Material(
         color: Colors.transparent,
         child: InkWell(
+          key: Key('keyBtnSort'),
           focusColor: Colors.transparent,
           highlightColor: Colors.transparent,
           hoverColor: Colors.transparent,

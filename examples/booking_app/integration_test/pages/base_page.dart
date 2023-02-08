@@ -6,12 +6,14 @@ class BasePage {
   BasePage(this.tester);
 
   Future<void> tapElement(Finder element) async{
-    await tester.ensureVisible(element);
+    // await tester.ensureVisible(element);
     await tester.tap(element, warnIfMissed: true);
+    await tester.pumpAndSettle();
   }
 
   Future<void> setText(Finder inputField, String text) async {
     await tester.ensureVisible(inputField);
     await tester.enterText(inputField, text);
+    await tester.pumpAndSettle();
   }
 }

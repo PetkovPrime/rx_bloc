@@ -1,5 +1,4 @@
 import 'package:favorites_advanced_base/core.dart';
-import 'package:favorites_advanced_base/resources.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 import 'package:flutter_rx_bloc/rx_form.dart';
@@ -51,7 +50,6 @@ class _HotelSearchPageState extends State<HotelSearchPage>
                       state: (bloc) => bloc.states.queryFilter,
                       showErrorState: (_) => const Stream.empty(),
                       builder: (fieldState) => SearchBar(
-                        key: const Key(Keys.hotelSearchElement),
                         controller: fieldState.controller,
                       ),
                       onChanged: (bloc, text) {
@@ -153,6 +151,7 @@ class _HotelSearchPageState extends State<HotelSearchPage>
       animationController: animationController,
       animation: animation,
       child: HotelListItem(
+        key: Key('locHotelItem${item.id}'),
         hotel: item,
         onCardPressed: (index) => Navigator.of(context).push(
           HotelDetailsPage.route(hotel: item),

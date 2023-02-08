@@ -17,11 +17,13 @@ void main() {
 
       searchPage = SearchPage(tester);
 
-      await searchPage.tapSortBtn();
+      // await searchPage.tapSortBtn();
 
       await searchPage.tapSearchBox();
 
-      await searchPage.setSearchBox('TEST!!!');
+      await searchPage.setSearchBox('Rose');
+
+
     });
   });
 }

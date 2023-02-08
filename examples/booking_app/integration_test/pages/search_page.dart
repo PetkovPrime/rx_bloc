@@ -1,14 +1,12 @@
-import 'package:favorites_advanced_base/resources.dart';
-import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-
+import '../keys/search_page_keys.dart';
 import 'base_page.dart';
 
 class SearchPage extends BasePage{
 
-  final Finder locInputSearch = find.byKey(const Key(Keys.hotelSearchElement));
-  final Finder locSortBtn = find.byKey(const Key(Keys.hotelSortElement));
+  final Finder locInputSearch = find.byKey(SearchPageKeys.keyInputSearch);
+  final Finder locSortBtn = find.byKey(SearchPageKeys.keyBtnSort);
 
 
   SearchPage(WidgetTester tester) : super(tester);
