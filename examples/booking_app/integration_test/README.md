@@ -20,7 +20,7 @@ Unit tests and widget tests are handy for testing individual classes, functions,
 
 Integration tests are written using the **integration_test** package, provided by the SDK.
 
-##Tech Stack
+## Tech Stack
 * Dart
 * Flutter
 * Antroid Studio
