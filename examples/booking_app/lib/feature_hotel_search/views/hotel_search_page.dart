@@ -151,7 +151,7 @@ class _HotelSearchPageState extends State<HotelSearchPage>
       animationController: animationController,
       animation: animation,
       child: HotelListItem(
-        key: Key('locHotelItem${item.id}'),
+        key: Key('locHotelItem$index'),
         hotel: item,
         onCardPressed: (index) => Navigator.of(context).push(
           HotelDetailsPage.route(hotel: item),
