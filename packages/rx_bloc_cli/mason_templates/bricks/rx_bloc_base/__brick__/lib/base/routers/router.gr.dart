@@ -16,7 +16,8 @@ import 'package:flutter/material.dart' as _i5;
 
 import '../../feature_counter/views/counter_page.dart' as _i1;
 import '../../feature_login/views/login_page.dart' as _i2;
-import '../../feature_notifications/views/notifications_page.dart' as _i3;
+import '../../feature_notifications/views/notifications_page.dart' as _i3;{{#ui_toolkit}}
+import '../../feature_ui_toolkit/views/ui_toolkit_page.dart' as _i6;{{/ui_toolkit}}
 
 class Router extends _i4.RootStackRouter {
   Router([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
@@ -42,7 +43,14 @@ class Router extends _i4.RootStackRouter {
         child: _i4.WrappedRoute(child: const _i3.NotificationsPage()),
       );
     },
-  };
+  };{{#ui_toolkit}}
+  UiToolkitRoute.name: (routeData) {
+  return _i4.MaterialPageX<dynamic>(
+  routeData: routeData,
+  child: const _i6.UiToolkitPage(),
+  );
+  },
+};{{/ui_toolkit}}
 
   @override
   List<_i4.RouteConfig> get routes => [
@@ -95,4 +103,15 @@ class NotificationsRoute extends _i4.PageRouteInfo<void> {
         );
 
   static const String name = 'NotificationsRoute';
+  {{#ui_toolkit}}
+  /// generated route for
+  /// [_i6.UiToolkitPage]
+  class UiToolkitRoute extends _i4.PageRouteInfo<void> {
+  const UiToolkitRoute()
+      : super(
+  UiToolkitRoute.name,
+  path: '/ui-toolkit-page',
+  );
+
+  static const String name = 'UiToolkitRoute';{{/ui_toolkit}}
 }

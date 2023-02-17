@@ -38,6 +38,12 @@ class CreateCommand extends Command<int> {
         help: 'Enables Firebase analytics for the project',
         allowed: ['true', 'false'],
         defaultsTo: 'false',
+      )
+      ..addOption(
+        _uiToolkitString,
+        help: 'Add ui_toolkit package into the project',
+        allowed: ['true', 'false'],
+        defaultsTo: 'false',
       );
   }
 
@@ -46,6 +52,7 @@ class CreateCommand extends Command<int> {
   final _projectNameString = 'project-name';
   final _organisationString = 'organisation';
   final _analyticsString = 'enable-analytics';
+  final _uiToolkitString = 'add-ui-toolkit';
 
   final Logger _logger;
   final MasonBundle _bundle;
@@ -109,9 +116,22 @@ class CreateCommand extends Command<int> {
         'uses_firebase': usesFirebase,
         'analytics': arguments.enableAnalytics,
         'push_notifications': true,
+        'ui_toolkit': arguments.uiToolkit,
       },
     );
-
+    _logger.info('Starting hooks.postGen');
+    await generator.hooks.postGen(
+      workingDirectory: arguments.outputDirectory.path,
+      vars: {
+        'project_name': arguments.projectName,
+        'domain_name': orgDomain,
+        'organization_name': orgName,
+        'uses_firebase': usesFirebase,
+        'analytics': arguments.enableAnalytics,
+        'push_notifications': true,
+        'ui_toolkit': arguments.uiToolkit,
+      },
+    );
     // Manually create gitignore.
     GitIgnoreCreator.generate(arguments.outputDirectory.path);
 
@@ -132,6 +152,7 @@ class CreateCommand extends Command<int> {
       organisation: _parseOrganisation(arguments),
       enableAnalytics: _parseEnableAnalytics(arguments),
       outputDirectory: _parseOutputDirectory(arguments),
+      uiToolkit: _parseOutputUiToolkit(arguments),
     );
   }
 
@@ -154,6 +175,12 @@ class CreateCommand extends Command<int> {
     final rest = arguments.rest;
     _validateOutputDirectoryArg(rest);
     return Directory(rest.first);
+  }
+
+  /// Gets the directory used for the file generation
+  bool _parseOutputUiToolkit(ArgResults arguments) {
+    final rest = arguments[_uiToolkitString];
+    return rest.toString().toLowerCase() == 'true';
   }
 
   /// Returns whether the project will use analytics or not
@@ -253,7 +280,6 @@ class CreateCommand extends Command<int> {
   }
 
   /// endregion
-
 }
 
 class _CreateCommandArguments {
@@ -262,10 +288,12 @@ class _CreateCommandArguments {
     required this.organisation,
     required this.enableAnalytics,
     required this.outputDirectory,
+    required this.uiToolkit,
   });
 
   final String projectName;
   final String organisation;
   final bool enableAnalytics;
   final Directory outputDirectory;
+  final bool uiToolkit;
 }

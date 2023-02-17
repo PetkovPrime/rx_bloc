@@ -12,6 +12,7 @@ dart run rx_bloc_cli create \
   example/test_app
 cd example/test_app
 flutter pub get
+#flutter pub run build_runner build --delete-conflicting-outputs
 #flutter test
 cd ../..
 cp example/test_app/README.md example/
