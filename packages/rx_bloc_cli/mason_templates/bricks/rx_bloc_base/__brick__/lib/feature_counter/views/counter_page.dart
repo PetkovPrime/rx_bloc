@@ -1,4 +1,4 @@
-{{> licence.dart }}
+// {{> licence.dart }}
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +10,7 @@ import '../../base/common_ui_components/action_button.dart';
 import '../../base/common_ui_components/update_button.dart';
 import '../../base/extensions/error_model_translations.dart';
 import '../../base/models/errors/error_model.dart';
+import '../../base/routers/router.gr.dart';
 import '../../base/theme/design_system.dart';
 import '../../feature_login/ui_components/profile_avatar.dart';
 import '../../l10n/l10n.dart';
@@ -30,6 +31,7 @@ class CounterPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: _buildAppBar(context),
+        drawer: _buildDrawer(context),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -65,6 +67,37 @@ class CounterPage extends StatelessWidget implements AutoRouteWrapper {
           ),
           const ProfileAvatar(),
         ],
+      );
+
+  Widget _buildDrawer(BuildContext context) => Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ), {{#edit_address}}
+            ListTile(
+              title: const Text('EDIT ADDRESS'),
+              onTap: () {
+                context.router.pop();
+                context.router.push(const EditAddressBrickRoute());
+              },
+            ), {{/edit_address}}
+            ListTile(
+              title: const Text('Close the Drawer'),
+              onTap: () {
+                context.router.pop();
+              },
+            ),
+          ],
+        ),
       );
 
   Widget _buildCount(BuildContext context, AsyncSnapshot<int> snapshot) =>

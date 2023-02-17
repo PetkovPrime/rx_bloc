@@ -5,3 +5,4 @@ environment:
 
 dependencies:
   mason: any
+  path: ^1.8.3
