@@ -1,19 +1,21 @@
 # E2E INTEGRATION TESTING
 
 ## Findings
-1. Public classes in Flutter (search_page_keys.dart).
-2. Handling list of elements?
+1. Public classes in Flutter (search_page_keys.dart). KEYS NEED TO BE IN BASE FOLDER
+2. Handling list of elements? FINDER IS ITERATABLE
 3. Will adding Keys (locators) to UI elements cause issues in terms of that piece of code being
-   reused in other parts of the UI?
+   reused in other parts of the UI? FINDER CAN BE ITERATED and search for TEXT etc...
    Example: Sort button from search page being reused in some other page.
 4. Import of classes (import 'package:integration_test/keys/search_page_keys.dart';).
 5. What is the difference between defining keys in constructor of the class and having a
-   separate key.dart containing keys for specific page that help locate elements.
-6. kotlin-android plugin failing when executing patrol tests.
-7. Finding multiple elements with keyBtnSort when put in focus_button.dart.
+   separate key.dart containing keys for specific page that help locate elements. KEY FIELDS NEED TO ADDED ONLY IN THE CORE LIB
+6. kotlin-android plugin failing when executing patrol tests. UNSOLVED
+7. Finding multiple elements with keyBtnSort when put in focus_button.dart. RESOLVED
 8. When using 'key: Key('locHotelItem${item.id}')', how do we know what the id is
-   when locating element?
-9. Dart naming conventions
+   when locating element? INDEX WILL BE USED
+9. Dart naming conventions [Effective Dart](https://dart.dev/guides/language/effective-dart), [flutter_lints](https://pub.dev/packages/flutter_lints)
+11. Expected: <true>
+    Actual: <Instance of 'Future<bool>'>
 
 ## Introduction
 Unit tests and widget tests are handy for testing individual classes, functions, or widgets. However, they generally don’t test how individual pieces work together as a whole, or capture the performance of an application running on a real device. These tasks are performed with integration tests.

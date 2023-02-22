@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 import '../../../base/common_blocs/hotel_manage_bloc.dart';
 import '../../../base/ui_components/favorite_message_listener.dart';
 import '../../base/common_blocs/hotels_extra_details_bloc.dart';
+import '../../base/keys/hotel_details_page_keys.dart';
+import '../../base/keys/search_page_keys.dart';
 import '../blocs/hotel_details_bloc.dart';
 
 part '../ui_components/hotel_details_app_bar.dart';

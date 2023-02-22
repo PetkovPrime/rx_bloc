@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rx_bloc/flutter_rx_bloc.dart';
 
 import '../../feature_hotel_search/blocs/hotel_search_bloc.dart';
+import '../keys/search_page_keys.dart';
 
 class SortingBar extends SliverPersistentHeaderDelegate {
   SortingBar({
@@ -69,6 +70,7 @@ class SortingBar extends SliverPersistentHeaderDelegate {
                   RxBlocBuilder<HotelSearchBlocType, SortBy>(
                     state: (bloc) => bloc.states.sortedBy,
                     builder: (context, sortByState, bloc) => FocusButton(
+                      inkWellKey: SearchPageKeys.keySortBtn,
                       onPressed: () {
                         onPressed?.call(bloc, sortByState.data ?? SortBy.none);
                       },

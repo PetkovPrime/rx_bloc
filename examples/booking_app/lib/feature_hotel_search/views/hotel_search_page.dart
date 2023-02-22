@@ -8,6 +8,7 @@ import 'package:rx_bloc_list/rx_bloc_list.dart';
 import '../../../base/ui_components/sorting_bar.dart';
 import '../../base/common_blocs/hotel_manage_bloc.dart';
 import '../../base/common_blocs/hotels_extra_details_bloc.dart';
+import '../../base/keys/search_page_keys.dart';
 import '../../feature_hotel_details/views/hotel_details_page.dart';
 import '../blocs/hotel_search_bloc.dart';
 import '../models/capacity_filter_data.dart';
@@ -151,7 +152,7 @@ class _HotelSearchPageState extends State<HotelSearchPage>
       animationController: animationController,
       animation: animation,
       child: HotelListItem(
-        key: Key('locHotelItem$index'),
+        key: SearchPageKeys.keyListHotelItems,
         hotel: item,
         onCardPressed: (index) => Navigator.of(context).push(
           HotelDetailsPage.route(hotel: item),

@@ -4,16 +4,18 @@ class FocusButton extends StatelessWidget {
   FocusButton({
     required this.onPressed,
     required this.child,
+    this.inkWellKey
   });
 
   final Widget child;
   final VoidCallback onPressed;
+  final Key? inkWellKey;
 
   @override
   Widget build(BuildContext context) => Material(
         color: Colors.transparent,
         child: InkWell(
-          key: Key('keyBtnSort'),
+          key: inkWellKey,
           focusColor: Colors.transparent,
           highlightColor: Colors.transparent,
           hoverColor: Colors.transparent,

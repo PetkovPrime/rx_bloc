@@ -6,7 +6,7 @@ class BasePage {
   BasePage(this.tester);
 
   Future<void> tapElement(Finder element) async{
-    // await tester.ensureVisible(element);
+    await tester.ensureVisible(element);
     await tester.tap(element, warnIfMissed: true);
     await tester.pumpAndSettle();
   }
@@ -15,5 +15,9 @@ class BasePage {
     await tester.ensureVisible(inputField);
     await tester.enterText(inputField, text);
     await tester.pumpAndSettle();
+  }
+
+  Future<bool> isDisplayed(Finder element) async{
+    return element.evaluate().isNotEmpty ? true : false;
   }
 }
