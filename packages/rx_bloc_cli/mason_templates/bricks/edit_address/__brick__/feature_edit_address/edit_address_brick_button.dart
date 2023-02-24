@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../app_extensions.dart';
+import '../app_extensions.dart';
 
 ///TODO add license
 class EditAddressBrickButton extends StatelessWidget {
