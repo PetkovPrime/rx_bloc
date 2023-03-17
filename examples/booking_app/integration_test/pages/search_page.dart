@@ -1,6 +1,7 @@
 import 'package:booking_app/base/keys/search_page_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+
 import 'base_page.dart';
 import 'hotel_details_page.dart';
 
@@ -12,7 +13,7 @@ class SearchPage extends BasePage{
 
   SearchPage(WidgetTester tester) : super(tester);
 
-Future<HotelDetailsPage> tapFirstHotelItem() async{
+  Future<HotelDetailsPage> tapFirstHotelItem() async{
     await tapElement(locFirstHotelItem);
     return HotelDetailsPage(tester);
   }

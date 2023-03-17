@@ -14,11 +14,35 @@
 8. When using 'key: Key('locHotelItem${item.id}')', how do we know what the id is
    when locating element? INDEX WILL BE USED
 9. Dart naming conventions [Effective Dart](https://dart.dev/guides/language/effective-dart), [flutter_lints](https://pub.dev/packages/flutter_lints)
-11. Expected: <true>
+10. Expected: <true>
     Actual: <Instance of 'Future<bool>'>
 
+## Vanilla Approach
+*PROS*
+1. Using well know POM approach.
+2. Independent of third party libraries.
+3. Using inbuilt Flutter testing tools.
+
+*CONS*
+1. Takes more time to write tests.
+2. Requires writing utils that are already included in third party libraries.
+
+## Patrol Tester
+*PROS*
+1. Write tests faster.
+2. No POM required.
+3. No to little additional utils required.
+
+*CONS*
+1. Tests are dependant on third party library. (may become unsupported)
+2. Tests use custom PatrolTester with specific syntax.
+3. Lack of info about issues.
+
 ## Introduction
-Unit tests and widget tests are handy for testing individual classes, functions, or widgets. However, they generally don’t test how individual pieces work together as a whole, or capture the performance of an application running on a real device. These tasks are performed with integration tests.
+Unit tests and widget tests are handy for testing individual classes, functions, or widgets. 
+However, they generally don’t test how individual pieces work together as a whole, 
+or capture the performance of an application running on a real device. 
+These tasks are performed with integration tests.
 
 Integration tests are written using the **integration_test** package, provided by the SDK.
 
@@ -38,6 +62,8 @@ Integration tests are written using the **integration_test** package, provided b
 ## Project Structure
 
 ## Naming Conventions
+*Effective Dart* guides can be found here [Guides](https://dart.dev/guides/language/effective-dart).
+
 Finders starts with prefix **loc** followed by **Type** and **Name**:
 
 | Finder type      | Predix      | Example                          |

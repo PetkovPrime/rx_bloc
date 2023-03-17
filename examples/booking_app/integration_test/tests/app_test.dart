@@ -1,13 +1,16 @@
+import 'package:booking_app/base/keys/hotel_details_page_keys.dart';
+import 'package:booking_app/base/keys/search_page_keys.dart';
 import 'package:booking_app/main.dart' as app;
 import 'package:favorites_advanced_base/core.dart';
-import 'package:flutter_test/flutter_test.dart';
-import 'package:integration_test/integration_test.dart';
+import 'package:flutter/foundation.dart';
+
 import '../pages/hotel_details_page.dart';
 import '../pages/search_page.dart';
+import 'common.dart';
 
 void main() {
   SkeletonText.testMode = true;
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  // IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   SearchPage searchPage;
   HotelDetailsPage hotelDetailsPage;
@@ -32,4 +35,14 @@ void main() {
       expect(hotelDetailsPage.isFavoriteBtnDisplayed(), true);
     });
   });
+
+  // patrol('Add hotel to favorite', ($) async {
+  //   await $.pumpWidgetAndSettle(const MyApp());
+  //
+  //   await $(SearchPageKeys.keyInputSearch).enterText('Rose');
+  //   await $(SearchPageKeys.keyListHotelItems).first.tap();
+  //   await $(HotelDetailsPageKeys.keyBtnFavoriteBorder).tap();
+  //   await $.native.pressBack();
+  // });
+  //
 }

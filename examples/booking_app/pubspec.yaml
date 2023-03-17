@@ -53,6 +53,7 @@ dev_dependencies:
   rx_bloc_generator:
   rx_bloc_test: ^3.2.0
   test: any
+  patrol: ^1.0.7
 
 dependency_overrides:
   animated_stream_list:
